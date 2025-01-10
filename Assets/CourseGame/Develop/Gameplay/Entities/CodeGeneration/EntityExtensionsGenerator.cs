@@ -23,6 +23,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
             {EntityValues.RotationSpeed, typeof(ReactiveVariable<float>) },
             {EntityValues.RotationCondition, typeof(ICompositeCondition) },
 
+            {EntityValues.TeleportCondition, typeof(ICompositeCondition) }, // ДЗ
+
             {EntityValues.SelfTriggerDamage, typeof(ReactiveVariable<float>) },
             {EntityValues.SelfTriggerReciever, typeof(TriggerReciever) },
 

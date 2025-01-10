@@ -3,6 +3,7 @@ using Assets.CourseGame.Develop.DI;
 using Assets.CourseGame.Develop.Gameplay.Features.DamageFeature;
 using Assets.CourseGame.Develop.Gameplay.Features.DeathFeature;
 using Assets.CourseGame.Develop.Gameplay.Features.MovementFeature;
+using Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature;
 using Assets.CourseGame.Develop.Utils.Conditions;
 using Assets.CourseGame.Develop.Utils.Reactive;
 using UnityEngine;
@@ -88,7 +89,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
             Entity instance = Object.Instantiate(prefab, position, Quaternion.identity, null);
 
             instance
-                // .AddMoveDirection()
+                .AddMoveDirection()
                 // .AddMoveSpeed(new ReactiveVariable<float>(10))
                 // .AddIsMoving()
                 // .AddRotationDirection()
@@ -113,12 +114,17 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .Add(new FuncCondition(() => instance.GetIsDead().Value))
                 .Add(new FuncCondition(() => instance.GetIsDeathProcess().Value == false));
 
+            ICompositeCondition TeleportCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
+                .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
+                .Add(new FuncCondition(() => instance.GetEnergy().Value >= 0));
+
             instance
                 // .AddMoveCondition(moveCondition)
                 // .AddRotationCondition(rotationCondition)
                 .AddDeathCondition(deathCondition)
                 .AddTakeDamageCondition(takeDamageCondition)
-                .AddSelfDestroyCondition(selfDestroyCondition);
+                .AddSelfDestroyCondition(selfDestroyCondition)
+                .AddTeleportCondition(TeleportCondition);
 
             instance
                // .AddBehaviour(new CharacterControllerMovementBehaviour())
@@ -127,7 +133,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                .AddBehaviour(new ApplyDamageBehaviour())
                .AddBehaviour(new DealDamageOnSelfTriggerBehaviour())
                .AddBehaviour(new DeathBehaviour())
-               .AddBehaviour(new SelfDestroyBehaviour());
+               .AddBehaviour(new SelfDestroyBehaviour())
+               .AddBehaviour(new TeleportBehaviour());
 
             instance.Initialize();
 

@@ -7,6 +7,8 @@
         MoveCondition,
         IsMoving,
 
+        TeleportCondition, // ДЗ
+
         RotationDirection,
         RotationSpeed,
         RotationCondition,
