@@ -2,6 +2,7 @@
 using Assets.CourseGame.Develop.DI;
 using Assets.CourseGame.Develop.Gameplay.Features.DamageFeature;
 using Assets.CourseGame.Develop.Gameplay.Features.DeathFeature;
+using Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature;
 using Assets.CourseGame.Develop.Gameplay.Features.MovementFeature;
 using Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature;
 using Assets.CourseGame.Develop.Utils.Conditions;
@@ -101,8 +102,9 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddIsDead()
                 .AddIsDeathProcess()
                 .AddSelfTriggerDamage(new ReactiveVariable<float>(150))
-                .AddEnergy(new ReactiveVariable<float>(100))
-                .AddMaxEnergy(new ReactiveVariable<float>(100));
+                .AddEnergy(new ReactiveVariable<float>(50))
+                .AddMaxEnergy(new ReactiveVariable<float>(100))
+                .AddTimeRecoveryUnitEnergy(new ReactiveVariable<float>(3));
 
             ICompositeCondition deathCondition = new CompositeCondition(LogicOperations.AndOperation)
                 .Add(new FuncCondition(() => instance.GetHealth().Value <= 0));
@@ -118,13 +120,18 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
                 .Add(new FuncCondition(() => instance.GetEnergy().Value >= 0));
 
+            ICompositeCondition RecoveryEnergyCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
+                .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
+                .Add(new FuncCondition(() => instance.GetEnergy().Value != instance.GetMaxEnergy().Value));
+
             instance
                 // .AddMoveCondition(moveCondition)
                 // .AddRotationCondition(rotationCondition)
                 .AddDeathCondition(deathCondition)
                 .AddTakeDamageCondition(takeDamageCondition)
                 .AddSelfDestroyCondition(selfDestroyCondition)
-                .AddTeleportCondition(TeleportCondition);
+                .AddTeleportCondition(TeleportCondition)
+                .AddRecoveryEnergyCondition(RecoveryEnergyCondition);
 
             instance
                // .AddBehaviour(new CharacterControllerMovementBehaviour())
@@ -134,7 +141,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                .AddBehaviour(new DealDamageOnSelfTriggerBehaviour())
                .AddBehaviour(new DeathBehaviour())
                .AddBehaviour(new SelfDestroyBehaviour())
-               .AddBehaviour(new TeleportBehaviour());
+               .AddBehaviour(new TeleportBehaviour())
+               .AddBehaviour(new RecoveryEnergyBehaviour());
 
             instance.Initialize();
 

@@ -24,6 +24,8 @@
 
         Energy,// ДЗ
         MaxEnergy, //ДЗ
+        TimeRecoveryUnitEnergy, // ДЗ
+        RecoveryEnergyCondition,// ДЗ
 
         TakeDamageRequest,
         TakeDamageEvent,
