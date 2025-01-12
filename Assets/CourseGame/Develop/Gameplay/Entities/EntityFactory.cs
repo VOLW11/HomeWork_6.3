@@ -90,7 +90,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
             Entity instance = Object.Instantiate(prefab, position, Quaternion.identity, null);
 
             instance
-                .AddMoveDirection()
+                //.AddMoveDirection()
                 // .AddMoveSpeed(new ReactiveVariable<float>(10))
                 // .AddIsMoving()
                 // .AddRotationDirection()
@@ -107,7 +107,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddAmountEnergyForTeleport(new ReactiveVariable<float>(20))
                 .AddTimeRecoveryUnitEnergy(new ReactiveVariable<float>(3))
                 .AddIsTeleport()
-                .AddIsTeleportEvent();
+                .AddIsTeleportEvent()
+                .AddEffectTeleportEvent();
 
             ICompositeCondition deathCondition = new CompositeCondition(LogicOperations.AndOperation)
                 .Add(new FuncCondition(() => instance.GetHealth().Value <= 0));
@@ -129,8 +130,6 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .Add(new FuncCondition(() => instance.GetEnergy().Value != instance.GetMaxEnergy().Value));
 
             instance
-                // .AddMoveCondition(moveCondition)
-                // .AddRotationCondition(rotationCondition)
                 .AddDeathCondition(deathCondition)
                 .AddTakeDamageCondition(takeDamageCondition)
                 .AddSelfDestroyCondition(selfDestroyCondition)
@@ -138,15 +137,14 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddRecoveryEnergyCondition(RecoveryEnergyCondition);
 
             instance
-               // .AddBehaviour(new CharacterControllerMovementBehaviour())
-               // .AddBehaviour(new RotationBehaviour())
                .AddBehaviour(new ApplyDamageFilterBehaviour())
                .AddBehaviour(new ApplyDamageBehaviour())
                .AddBehaviour(new DealDamageOnSelfTriggerBehaviour())
                .AddBehaviour(new DeathBehaviour())
                .AddBehaviour(new SelfDestroyBehaviour())
                .AddBehaviour(new TeleportBehaviour())
-               .AddBehaviour(new RecoveryEnergyBehaviour());
+               .AddBehaviour(new RecoveryEnergyBehaviour())
+               .AddBehaviour(new UseEnergyBehaviour());
 
             instance.Initialize();
 

@@ -18,8 +18,6 @@ namespace Assets.CourseGame.Develop.Gameplay
             _ghost = _container.Resolve<EntityFactory>().CreateGhost(Vector3.zero);
             _container.Resolve<EntityFactory>().CreateGhost(Vector3.zero + Vector3.forward * 4);
 
-            Debug.Log($"Скорость созданного призрака: {_ghost.GetMoveSpeed().Value}");
-
             _ghostTeleport = _container.Resolve<EntityFactory>().CreateGhostTeleport(Vector3.zero); // ДЗ
         }
 
@@ -39,14 +37,10 @@ namespace Assets.CourseGame.Develop.Gameplay
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.T) && _ghostTeleport != null)/// ДЗ
+            if (_ghostTeleport != null)/// ДЗ
             {
-                if (_ghostTeleport.TryGetIsTeleportEvent(out var isTeleport))
+                if (Input.GetKeyDown(KeyCode.T) && _ghostTeleport.TryGetIsTeleportEvent(out var isTeleport))
                     isTeleport.Invoke(_ghostTeleport.GetIsTeleport().Value = true);
-
-               // _ghostTeleport.GetIsTeleportEvent().Invoke(_ghostTeleport.GetIsTeleport().Value = true);
-               // _ghostTeleport.TryGetIsTeleportEvent()
-               // _ghostTeleport.GetMoveDirection().Value = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
             }
         }
     }

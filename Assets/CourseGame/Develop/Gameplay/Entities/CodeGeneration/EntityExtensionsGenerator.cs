@@ -41,6 +41,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
             {EntityValues.RecoveryEnergyCondition, typeof(ICompositeCondition) },// ДЗ
 
             {EntityValues.IsTeleportEvent, typeof(ReactiveEvent<bool>) },//ДЗ
+            {EntityValues.EffectTeleportEvent, typeof(ReactiveEvent<Transform>) },//ДЗ
             {EntityValues.IsTeleport, typeof(ReactiveVariable<bool>) }, //ДЗ
 
             {EntityValues.TakeDamageRequest, typeof(ReactiveEvent<float>) },

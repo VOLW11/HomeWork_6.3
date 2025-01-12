@@ -29,6 +29,7 @@
         RecoveryEnergyCondition,// ДЗ
 
         IsTeleportEvent, //ДЗ
+        EffectTeleportEvent, //ДЗ
         IsTeleport, //ДЗ
 
         TakeDamageRequest,

@@ -76,6 +76,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5554250321156709069, guid: 34a403f56dbf2014aa31aa02d22b4361,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554250321156709069, guid: 34a403f56dbf2014aa31aa02d22b4361,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554250321156709069, guid: 34a403f56dbf2014aa31aa02d22b4361,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554250321156709069, guid: 34a403f56dbf2014aa31aa02d22b4361,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -123,6 +138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5554250321156709069, guid: 34a403f56dbf2014aa31aa02d22b4361,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8933024792284003759, guid: 34a403f56dbf2014aa31aa02d22b4361,
         type: 3}
@@ -253,6 +273,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4263829981356426256}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98f2e15640c2bde40a09e4fdb53c827d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8456593446883512001}
   m_SourcePrefab: {fileID: 100100000, guid: 98f2e15640c2bde40a09e4fdb53c827d, type: 3}
 --- !u!95 &297551935344449229 stripped
 Animator:
@@ -285,3 +309,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 297551935344449229}
+--- !u!114 &8456593446883512001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6452217427968267789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c9300a20eca6f42962bd3b78c6985d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabTeleportEffect: {fileID: 19855684, guid: ded43eaee385aa94eafade73f78babdb,
+    type: 3}

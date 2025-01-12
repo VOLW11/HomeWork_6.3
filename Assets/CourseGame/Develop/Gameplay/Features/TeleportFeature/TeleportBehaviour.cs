@@ -11,18 +11,17 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
     public class TeleportBehaviour : IEntityInitialize, IEntityUpdate
     {
         private Transform _transform;
-        private IReadOnlyVariable<Vector3> _direction;
         private ICondition _condition;
 
         private ReactiveVariable<bool> _isTeleport;
+        private ReactiveEvent<Transform> _effectPosition;
 
 
         public void OnInit(Entity entity)
         {
             _transform = entity.GetTransform();
-            _direction = entity.GetMoveDirection();
             _condition = entity.GetTeleportCondition();
-        
+            _effectPosition = entity.GetEffectTeleportEvent();
             _isTeleport = entity.GetIsTeleport();
         }
 
@@ -31,7 +30,9 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
             if (_condition.Evaluate() == false)
                 return;
 
+            _effectPosition.Invoke(_transform);
             _transform.position = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
+            _effectPosition.Invoke(_transform);
 
             _isTeleport.Value = false;
         }
