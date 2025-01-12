@@ -106,7 +106,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddMaxEnergy(new ReactiveVariable<float>(100))
                 .AddAmountEnergyForTeleport(new ReactiveVariable<float>(20))
                 .AddTimeRecoveryUnitEnergy(new ReactiveVariable<float>(3))
-                .AddUseEnergyEvent();
+                .AddIsTeleport()
+                .AddIsTeleportEvent();
 
             ICompositeCondition deathCondition = new CompositeCondition(LogicOperations.AndOperation)
                 .Add(new FuncCondition(() => instance.GetHealth().Value <= 0));
@@ -120,7 +121,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
 
             ICompositeCondition TeleportCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
                 .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
-                .Add(new FuncCondition(() => instance.GetEnergy().Value >= instance.GetAmountEnergyForTeleport().Value));
+                .Add(new FuncCondition(() => instance.GetEnergy().Value >= instance.GetAmountEnergyForTeleport().Value))
+                .Add(new FuncCondition(() => instance.GetIsTeleport().Value));
 
             ICompositeCondition RecoveryEnergyCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
                 .Add(new FuncCondition(() => instance.GetIsDead().Value == false))

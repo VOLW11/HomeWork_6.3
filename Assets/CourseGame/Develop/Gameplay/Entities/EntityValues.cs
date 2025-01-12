@@ -28,7 +28,8 @@
         TimeRecoveryUnitEnergy, // ДЗ
         RecoveryEnergyCondition,// ДЗ
 
-        UseEnergyEvent, //ДЗ
+        IsTeleportEvent, //ДЗ
+        IsTeleport, //ДЗ
 
         TakeDamageRequest,
         TakeDamageEvent,

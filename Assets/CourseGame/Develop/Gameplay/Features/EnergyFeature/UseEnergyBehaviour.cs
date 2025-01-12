@@ -10,28 +10,34 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
 {
     public class UseEnergyBehaviour : IEntityInitialize, IEntityDispose
     {
-        private ReactiveEvent _useEnergyEvent;
+     
         private ReactiveVariable<float> _energy;
         private ReactiveVariable<float> _useEnergy;
+
+        private ReactiveEvent<bool> _isTeleport;
 
         private IDisposable _disposableUseEnergy;
 
         public void OnInit(Entity entity)
         {
-            _useEnergyEvent = entity.GetUseEnergyEvent();//
             _energy = entity.GetEnergy();
             _useEnergy = entity.GetAmountEnergyForTeleport();
 
-            _disposableUseEnergy = _useEnergyEvent.Subscribe(OnUseEnergy);
+            _isTeleport = entity.GetIsTeleportEvent();
+
+           _disposableUseEnergy = _isTeleport.Subscribe(OnUseEnergy);
         }
 
-        private void OnUseEnergy()
+        private void OnUseEnergy(bool isTeleport)
         {
-           /* if (_useEnergy.Value < 0)
-                throw new ArgumentOutOfRangeException(nameof(_useEnergy));*/
+            Debug.Log("Использование энергии");
+            if (isTeleport == false)
+                return;
 
             float tempEnergy = _energy.Value - _useEnergy.Value;
             _energy.Value = Math.Max(tempEnergy, 0);
+
+            Debug.Log("Использование энергии");
         }
 
         public void OnDispose()

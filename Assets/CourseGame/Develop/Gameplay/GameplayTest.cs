@@ -41,7 +41,12 @@ namespace Assets.CourseGame.Develop.Gameplay
 
             if (Input.GetKeyDown(KeyCode.T) && _ghostTeleport != null)/// ДЗ
             {
-                _ghostTeleport.GetMoveDirection().Value = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
+                if (_ghostTeleport.TryGetIsTeleportEvent(out var isTeleport))
+                    isTeleport.Invoke(_ghostTeleport.GetIsTeleport().Value = true);
+
+               // _ghostTeleport.GetIsTeleportEvent().Invoke(_ghostTeleport.GetIsTeleport().Value = true);
+               // _ghostTeleport.TryGetIsTeleportEvent()
+               // _ghostTeleport.GetMoveDirection().Value = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
             }
         }
     }
