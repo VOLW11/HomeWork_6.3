@@ -90,11 +90,6 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
             Entity instance = Object.Instantiate(prefab, position, Quaternion.identity, null);
 
             instance
-                //.AddMoveDirection()
-                // .AddMoveSpeed(new ReactiveVariable<float>(10))
-                // .AddIsMoving()
-                // .AddRotationDirection()
-                //  .AddRotationSpeed(new ReactiveVariable<float>(900))
                 .AddHealth(new ReactiveVariable<float>(200))
                 .AddMaxHealth(new ReactiveVariable<float>(800))
                 .AddTakeDamageRequest()
@@ -102,8 +97,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddIsDead()
                 .AddIsDeathProcess()
                 .AddSelfTriggerDamage(new ReactiveVariable<float>(150))
-                .AddEnergy(new ReactiveVariable<float>(50))
-                .AddMaxEnergy(new ReactiveVariable<float>(100))
+                .AddEnergy(new ReactiveVariable<float>(80))
+                .AddMaxEnergy(new ReactiveVariable<float>(140))
                 .AddAmountEnergyForTeleport(new ReactiveVariable<float>(20))
                 .AddTimeRecoveryUnitEnergy(new ReactiveVariable<float>(3))
                 .AddIsTeleport()
