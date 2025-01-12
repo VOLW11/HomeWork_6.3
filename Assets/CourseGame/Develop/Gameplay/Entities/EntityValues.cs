@@ -24,8 +24,11 @@
 
         Energy,// ДЗ
         MaxEnergy, //ДЗ
+        AmountEnergyForTeleport, //ДЗ
         TimeRecoveryUnitEnergy, // ДЗ
         RecoveryEnergyCondition,// ДЗ
+
+        UseEnergyEvent, //ДЗ
 
         TakeDamageRequest,
         TakeDamageEvent,

@@ -36,8 +36,11 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
 
             {EntityValues.Energy, typeof(ReactiveVariable<float>) }, // ДЗ
             {EntityValues.MaxEnergy, typeof(ReactiveVariable<float>) }, // ДЗ
+            {EntityValues.AmountEnergyForTeleport, typeof(ReactiveVariable<float>) }, // ДЗ
             {EntityValues.TimeRecoveryUnitEnergy, typeof(ReactiveVariable<float>) },// ДЗ
             {EntityValues.RecoveryEnergyCondition, typeof(ICompositeCondition) },// ДЗ
+
+            {EntityValues.UseEnergyEvent, typeof(ReactiveEvent) },
 
             {EntityValues.TakeDamageRequest, typeof(ReactiveEvent<float>) },
             {EntityValues.TakeDamageEvent, typeof(ReactiveEvent<float>) },

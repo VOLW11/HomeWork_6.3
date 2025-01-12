@@ -14,11 +14,14 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
         private IReadOnlyVariable<Vector3> _direction;
         private ICondition _condition;
 
+        private ReactiveEvent _useEnergyEvent;
+
         public void OnInit(Entity entity)
         {
             _transform = entity.GetTransform();
             _direction = entity.GetMoveDirection();
             _condition = entity.GetTeleportCondition();
+            _useEnergyEvent = entity.GetUseEnergyEvent();
         }
 
         public void OnUpdate(float deltaTime)
@@ -27,6 +30,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
                 return;
 
             _transform.position = _direction.Value;
+
+            _useEnergyEvent.Invoke();
         }
     }
 }
