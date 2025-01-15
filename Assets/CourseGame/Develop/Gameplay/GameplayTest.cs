@@ -39,8 +39,8 @@ namespace Assets.CourseGame.Develop.Gameplay
 
             if (_ghostTeleport != null)/// ДЗ
             {
-                if (Input.GetKeyDown(KeyCode.T) && _ghostTeleport.TryGetIsTeleportEvent(out var isTeleport))
-                    isTeleport.Invoke(_ghostTeleport.GetIsTeleport().Value = true);
+                if (Input.GetKeyDown(KeyCode.T) && _ghostTeleport.TryGetIsTeleport(out var isTeleport))
+                   isTeleport.Value = true;
             }
         }
     }

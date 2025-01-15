@@ -15,6 +15,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
         private readonly HashSet<IEntityBehaviour> _behaviours = new();
 
         private readonly List<IEntityUpdate> _updatables = new();
+        private readonly List<IEntityFixedUpdate> _fixedUpdatables = new();//
         private readonly List<IEntityInitialize> _initializables = new();
         private readonly List<IEntityDispose> _disposeables = new();
 
@@ -50,6 +51,15 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
 
             foreach (IEntityUpdate updatable in _updatables)
                 updatable.OnUpdate(Time.deltaTime);
+        }
+
+        private void FixedUpdate()//
+        {
+            if (_isInit == false)
+                throw new InvalidOperationException("update for not inited");
+
+            foreach (IEntityFixedUpdate updatable in _fixedUpdatables)
+                updatable.OnFixedUpdate(Time.fixedDeltaTime);
         }
 
         private void OnDestroy()

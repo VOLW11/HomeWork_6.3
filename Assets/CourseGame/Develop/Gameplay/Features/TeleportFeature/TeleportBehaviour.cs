@@ -15,6 +15,9 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
 
         private ReactiveVariable<bool> _isTeleport;
         private ReactiveEvent<Transform> _effectPosition;
+        private ReactiveEvent _useEnergyEvent;
+
+        private static float _teleportDistance = 4f;
 
 
         public void OnInit(Entity entity)
@@ -23,15 +26,22 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
             _condition = entity.GetTeleportCondition();
             _effectPosition = entity.GetEffectTeleportEvent();
             _isTeleport = entity.GetIsTeleport();
+
+            _useEnergyEvent = entity.GetIsTeleportEvent();
         }
 
         public void OnUpdate(float deltaTime)
         {
             if (_condition.Evaluate() == false)
+            {
+                _isTeleport.Value = false;
                 return;
+            }
+
+            _useEnergyEvent.Invoke();
 
             _effectPosition.Invoke(_transform);
-            _transform.position = new Vector3(Random.Range(-4f, 4f), 0, Random.Range(-4f, 4f));
+            _transform.position = new Vector3(Random.Range(-_teleportDistance, _teleportDistance), 0, Random.Range(-_teleportDistance, _teleportDistance));
             _effectPosition.Invoke(_transform);
 
             _isTeleport.Value = false;

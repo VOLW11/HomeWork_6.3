@@ -8,18 +8,12 @@ using UnityEngine.UIElements;
 
 namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
 {
-    //  [RequireComponent(typeof(ParticleSystem))]
     public class TeleportView : EntityView
     {
         [SerializeField] private ParticleSystem _prefabTeleportEffect;
 
         private ReactiveEvent<Transform> _effectPosition;
         private IDisposable _disposableEffectView;
-
-        /* private void OnValidate()
-         {
-             _prefabTeleportEffect ??= GetComponent<ParticleSystem>();
-         }*/
 
         protected override void OnEntityInitialized(Entity entity)
         {

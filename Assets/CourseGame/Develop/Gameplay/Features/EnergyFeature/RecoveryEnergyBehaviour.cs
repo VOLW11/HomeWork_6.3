@@ -13,7 +13,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
     {
         private ICondition _condition;
         private ReactiveVariable<float> _energy;
-        private ReactiveVariable<float> _maxEnergy;
+        private IReadOnlyVariable<float> _maxEnergy;
         private float _time;
         private float _tempEnergy;
 
@@ -28,17 +28,16 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
         }
 
         public void OnUpdate(float deltaTime)
-        {     
+        {
             if (_condition.Evaluate())
             {
                 _time += deltaTime;
-
-                if(_time >= _recoveryTime.Value)
+                if (_time >= _recoveryTime.Value)
                 {
                     _time = 0;
                     _tempEnergy = _energy.Value + (_maxEnergy.Value * 0.1f); 
                     _energy.Value = Math.Min(_tempEnergy, _maxEnergy.Value);
-                    Debug.Log("Запас энергии: " + _energy.Value);
+                   Debug.Log("Запас энергии: " + _energy.Value);
                 }
             }
         }
