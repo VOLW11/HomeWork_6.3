@@ -32,6 +32,8 @@
         EffectTeleportEvent, //ДЗ
         IsTeleport, //ДЗ
 
+        SphereColliderDamage, //ДЗ
+
         TakeDamageRequest,
         TakeDamageEvent,
         TakeDamageCondition,

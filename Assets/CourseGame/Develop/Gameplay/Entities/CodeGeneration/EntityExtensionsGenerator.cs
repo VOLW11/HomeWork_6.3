@@ -23,7 +23,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
             {EntityValues.RotationSpeed, typeof(ReactiveVariable<float>) },
             {EntityValues.RotationCondition, typeof(ICompositeCondition) },
 
-            {EntityValues.TeleportCondition, typeof(ICompositeCondition) }, // ДЗ
+            {EntityValues.TeleportCondition, typeof(ICompositeCondition) }, 
 
             {EntityValues.SelfTriggerDamage, typeof(ReactiveVariable<float>) },
             {EntityValues.SelfTriggerReciever, typeof(TriggerReciever) },
@@ -34,15 +34,17 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
             {EntityValues.Health, typeof(ReactiveVariable<float>) },
             {EntityValues.MaxHealth, typeof(ReactiveVariable<float>) },
 
-            {EntityValues.Energy, typeof(ReactiveVariable<float>) }, // ДЗ
-            {EntityValues.MaxEnergy, typeof(ReactiveVariable<float>) }, // ДЗ
-            {EntityValues.AmountEnergyForTeleport, typeof(ReactiveVariable<float>) }, // ДЗ
-            {EntityValues.TimeRecoveryUnitEnergy, typeof(ReactiveVariable<float>) },// ДЗ
-            {EntityValues.RecoveryEnergyCondition, typeof(ICompositeCondition) },// ДЗ
+            {EntityValues.Energy, typeof(ReactiveVariable<float>) }, 
+            {EntityValues.MaxEnergy, typeof(ReactiveVariable<float>) }, 
+            {EntityValues.AmountEnergyForTeleport, typeof(ReactiveVariable<float>) }, 
+            {EntityValues.TimeRecoveryUnitEnergy, typeof(ReactiveVariable<float>) },
+            {EntityValues.RecoveryEnergyCondition, typeof(ICompositeCondition) },
 
-            {EntityValues.IsTeleportEvent, typeof(ReactiveEvent) },//ДЗ
-            {EntityValues.EffectTeleportEvent, typeof(ReactiveEvent<Transform>) },//ДЗ
-            {EntityValues.IsTeleport, typeof(ReactiveVariable<bool>) }, //ДЗ
+            {EntityValues.IsTeleportEvent, typeof(ReactiveEvent) },
+            {EntityValues.EffectTeleportEvent, typeof(ReactiveEvent<Transform>) },
+            {EntityValues.IsTeleport, typeof(ReactiveVariable<bool>) }, 
+
+            {EntityValues.SphereColliderDamage, typeof(Collider) }, 
 
             {EntityValues.TakeDamageRequest, typeof(ReactiveEvent<float>) },
             {EntityValues.TakeDamageEvent, typeof(ReactiveEvent<float>) },

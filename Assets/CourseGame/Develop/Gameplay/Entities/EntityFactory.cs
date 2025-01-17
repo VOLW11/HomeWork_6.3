@@ -115,12 +115,12 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .Add(new FuncCondition(() => instance.GetIsDead().Value))
                 .Add(new FuncCondition(() => instance.GetIsDeathProcess().Value == false));
 
-            ICompositeCondition TeleportCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
+            ICompositeCondition TeleportCondition = new CompositeCondition(LogicOperations.AndOperation) 
                 .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
                 .Add(new FuncCondition(() => instance.GetEnergy().Value >= instance.GetAmountEnergyForTeleport().Value))
                 .Add(new FuncCondition(() => instance.GetIsTeleport().Value));
 
-            ICompositeCondition RecoveryEnergyCondition = new CompositeCondition(LogicOperations.AndOperation) // ДЗ
+            ICompositeCondition RecoveryEnergyCondition = new CompositeCondition(LogicOperations.AndOperation)
                 .Add(new FuncCondition(() => instance.GetIsDead().Value == false))
                 .Add(new FuncCondition(() => instance.GetEnergy().Value != instance.GetMaxEnergy().Value));
 
@@ -139,7 +139,8 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                .AddBehaviour(new SelfDestroyBehaviour())
                .AddBehaviour(new TeleportBehaviour())
                .AddBehaviour(new RecoveryEnergyBehaviour())
-               .AddBehaviour(new UseEnergyBehaviour());
+               .AddBehaviour(new UseEnergyBehaviour())
+               .AddBehaviour(new EnableAreaDamageBehaviour());
 
             instance.Initialize();
 
