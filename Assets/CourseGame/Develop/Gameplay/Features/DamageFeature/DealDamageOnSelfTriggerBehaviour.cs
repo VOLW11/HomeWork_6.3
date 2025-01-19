@@ -38,6 +38,5 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.DamageFeature
         {
             _disposableTriggerEnter.Dispose();
         }
-
     }
 }

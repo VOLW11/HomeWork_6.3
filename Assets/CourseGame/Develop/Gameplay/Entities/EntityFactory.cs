@@ -134,13 +134,13 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
             instance
                .AddBehaviour(new ApplyDamageFilterBehaviour())
                .AddBehaviour(new ApplyDamageBehaviour())
-               .AddBehaviour(new DealDamageOnSelfTriggerBehaviour())
+               //.AddBehaviour(new DealDamageOnSelfTriggerBehaviour())
                .AddBehaviour(new DeathBehaviour())
                .AddBehaviour(new SelfDestroyBehaviour())
                .AddBehaviour(new TeleportBehaviour())
                .AddBehaviour(new RecoveryEnergyBehaviour())
                .AddBehaviour(new UseEnergyBehaviour())
-               .AddBehaviour(new EnableAreaDamageBehaviour());
+               .AddBehaviour(new AreaDamageBehaviour());
 
             instance.Initialize();
 

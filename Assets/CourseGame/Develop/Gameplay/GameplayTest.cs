@@ -15,7 +15,7 @@ namespace Assets.CourseGame.Develop.Gameplay
         {
             _container = container;
 
-            _ghost = _container.Resolve<EntityFactory>().CreateGhost(Vector3.zero);
+            _ghost = _container.Resolve<EntityFactory>().CreateGhost(Vector3.zero - Vector3.forward * 4);
             _container.Resolve<EntityFactory>().CreateGhost(Vector3.zero + Vector3.forward * 4);
 
             _ghostTeleport = _container.Resolve<EntityFactory>().CreateGhostTeleport(Vector3.zero); // ДЗ
