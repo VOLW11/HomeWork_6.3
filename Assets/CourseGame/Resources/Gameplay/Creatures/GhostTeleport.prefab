@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3757197438031547403}
   - component: {fileID: 5506636108196007529}
-  - component: {fileID: 7319592103397716497}
   m_Layer: 6
   m_Name: SelfDamageTrigger (1)
   m_TagString: Untagged
@@ -52,20 +51,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.1686091
+  m_Radius: 1.089574
   m_Center: {x: -0.00000023841858, y: 1.2067406, z: 0}
---- !u!114 &7319592103397716497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5006803287088362597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25fd723ad0f8714aa532b5e42fcf8d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5731526700347243798
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,10 +222,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 733307690825534129}
-    - targetCorrespondingSourceObject: {fileID: 8933024792284003759, guid: 34a403f56dbf2014aa31aa02d22b4361,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6768592016969154319}
   m_SourcePrefab: {fileID: 100100000, guid: 34a403f56dbf2014aa31aa02d22b4361, type: 3}
 --- !u!4 &6244951502894692861 stripped
 Transform:
@@ -265,19 +248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerReciever: {fileID: 2066918178153731439}
---- !u!114 &6768592016969154319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6937326608028606111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd3ef991ce0fe3e469252605289c851a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _areaDamage: {fileID: 8680226263064080588}
 --- !u!4 &7738479890688264594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8132011116999682722, guid: 34a403f56dbf2014aa31aa02d22b4361,

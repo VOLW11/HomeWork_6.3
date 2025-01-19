@@ -102,6 +102,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities
                 .AddAmountEnergyForTeleport(new ReactiveVariable<float>(20))
                 .AddTimeRecoveryUnitEnergy(new ReactiveVariable<float>(3))
                 .AddIsTeleport()
+                .AddIsTeleportProcess()
                 .AddIsTeleportEvent()
                 .AddEffectTeleportEvent();
 

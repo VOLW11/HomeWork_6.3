@@ -7,7 +7,7 @@
         MoveCondition,
         IsMoving,
 
-        TeleportCondition, // ДЗ
+        TeleportCondition, 
 
         RotationDirection,
         RotationSpeed,
@@ -22,17 +22,18 @@
         Health,
         MaxHealth,
 
-        Energy,// ДЗ
-        MaxEnergy, //ДЗ
-        AmountEnergyForTeleport, //ДЗ
-        TimeRecoveryUnitEnergy, // ДЗ
-        RecoveryEnergyCondition,// ДЗ
+        Energy,
+        MaxEnergy, 
+        AmountEnergyForTeleport, 
+        TimeRecoveryUnitEnergy, 
+        RecoveryEnergyCondition,
 
-        IsTeleportEvent, //ДЗ
-        EffectTeleportEvent, //ДЗ
-        IsTeleport, //ДЗ
+        IsTeleportEvent, 
+        EffectTeleportEvent, 
+        IsTeleport, 
+        IsTeleportProcess, 
 
-        SphereColliderDamage, //ДЗ
+        SphereColliderDamage, 
 
         TakeDamageRequest,
         TakeDamageEvent,

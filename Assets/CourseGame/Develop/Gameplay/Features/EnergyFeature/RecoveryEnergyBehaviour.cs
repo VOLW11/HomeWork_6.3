@@ -35,9 +35,9 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
                 if (_time >= _recoveryTime.Value)
                 {
                     _time = 0;
-                    _tempEnergy = _energy.Value + (_maxEnergy.Value * 0.1f); 
+                    _tempEnergy = _energy.Value + (_maxEnergy.Value * 0.1f);
                     _energy.Value = Math.Min(_tempEnergy, _maxEnergy.Value);
-                   Debug.Log("Запас энергии: " + _energy.Value);
+                    Debug.Log("Запас энергии: " + _energy.Value);
                 }
             }
         }

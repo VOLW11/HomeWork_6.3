@@ -43,6 +43,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Entities.CodeGeneration
             {EntityValues.IsTeleportEvent, typeof(ReactiveEvent) },
             {EntityValues.EffectTeleportEvent, typeof(ReactiveEvent<Transform>) },
             {EntityValues.IsTeleport, typeof(ReactiveVariable<bool>) }, 
+            {EntityValues.IsTeleportProcess, typeof(ReactiveVariable<bool>) }, 
 
             {EntityValues.SphereColliderDamage, typeof(Collider) }, 
 

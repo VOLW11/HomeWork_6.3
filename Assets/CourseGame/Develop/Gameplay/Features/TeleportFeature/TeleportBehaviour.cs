@@ -8,29 +8,34 @@ using UnityEngine;
 
 namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
 {
-    public class TeleportBehaviour : IEntityInitialize, IEntityUpdate
+    public class TeleportBehaviour : IEntityInitialize
     {
         private Transform _transform;
         private ICondition _condition;
 
         private ReactiveVariable<bool> _isTeleport;
+        private ReactiveVariable<bool> _isTeleportProcess;
+
         private ReactiveEvent<Transform> _effectPosition;
         private ReactiveEvent _useEnergyEvent;
 
         private static float _teleportDistance = 4f;
-
 
         public void OnInit(Entity entity)
         {
             _transform = entity.GetTransform();
             _condition = entity.GetTeleportCondition();
             _effectPosition = entity.GetEffectTeleportEvent();
+
+            _isTeleportProcess = entity.GetIsTeleportProcess();
             _isTeleport = entity.GetIsTeleport();
-            
+      
+            _isTeleport.Changed += Teleport;
+
             _useEnergyEvent = entity.GetIsTeleportEvent();
         }
 
-        public void OnUpdate(float deltaTime)
+        private void Teleport(bool arg1, bool arg2)
         {
             if (_condition.Evaluate() == false)
             {
@@ -41,9 +46,11 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
             _useEnergyEvent.Invoke();
 
             _effectPosition.Invoke(_transform);
-            _transform.position = new Vector3(Random.Range(-_teleportDistance, _teleportDistance), 0, Random.Range(-_teleportDistance, _teleportDistance));
+            _transform.position = new Vector3(Random.Range(-_teleportDistance, _teleportDistance), 0, 
+                                              Random.Range(-_teleportDistance, _teleportDistance));
             _effectPosition.Invoke(_transform);
-      
+
+            _isTeleportProcess.Value = true;
             _isTeleport.Value = false;
         }
     }

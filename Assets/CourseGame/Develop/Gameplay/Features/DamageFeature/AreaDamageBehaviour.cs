@@ -10,74 +10,53 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AreaDamageBehaviour : IEntityInitialize, IEntityDispose, IEntityUpdate
+public class AreaDamageBehaviour : IEntityInitialize, IEntityDispose
 {
-    private ICondition _condition;
-    private Collider _collider;
-
-    private TriggerReciever _triggerReciever;
+    private ReactiveEvent _isTeleportEvent;
     private ReactiveVariable<float> _damage;
+    private TriggerReciever _triggerReciever;
 
     private IDisposable _disposableTriggerEnter;
+    private IDisposable _disposableSphereCollider;
+
+  //  private IReadOnlyVariable<bool> _teleport;
+
+    private ReactiveVariable<bool> _isTeleportProcess;
 
     public void OnInit(Entity entity)
     {
-        _condition = entity.GetTeleportCondition();
-        _collider = entity.GetSphereColliderDamage();
-
-        _collider.isTrigger = true;
-
-      //  _condition.Changed += Attack;
-
+        _isTeleportEvent = entity.GetIsTeleportEvent();
         _triggerReciever = entity.GetSelfTriggerReciever();
         _damage = entity.GetSelfTriggerDamage();
 
         _disposableTriggerEnter = _triggerReciever.Enter.Subscribe(OnTriggerEnter);
+        _disposableSphereCollider = _isTeleportEvent.Subscribe(EnableCollider);
+
+        _isTeleportProcess = entity.GetIsTeleportProcess();
     }
 
-    private void Attack(bool arg1, bool arg2)
+    private void EnableCollider()
     {
-        if (arg2 == true)
-        {
-            _collider.isTrigger = true;
-
-             Debug.Log(_collider.isTrigger + " 1111");
-            return;
-        }
-   
-        //_collider.isTrigger = false;
-   
+        _isTeleportProcess.Value = false;
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         Entity otherEntity = collider.GetComponentInParent<Entity>();
 
-        if (otherEntity != null)
+        if (otherEntity != null && _isTeleportProcess.Value)
         {
-            Debug.Log("Õ¿ÿ≈À ¬–¿√¿, Õ¿ÕŒÿ” ”–ŒÕ");
+            Debug.Log("”ÓÌ ÔÓ Ó·Î‡ÒÚË");
             otherEntity.TryTakeDamage(_damage.Value);
 
-            _collider.isTrigger = false;
+            _isTeleportProcess.Value = false;
         }
     }
 
     public void OnDispose()
     {
         _disposableTriggerEnter.Dispose();
-    }
-
-    public void OnUpdate(float deltaTime)
-    {
-        if (_condition.Evaluate())
-        {
-            /*_collider.isTrigger = true;
-
-            Debug.Log(_collider.isTrigger + " 1111");
-            return;*/
-        }
-
-      //  _collider.isTrigger = false;
+        _disposableSphereCollider.Dispose();
     }
 }
 
