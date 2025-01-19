@@ -12,10 +12,9 @@ using UnityEngine;
 
 public class AreaDamageBehaviour : IEntityInitialize, IEntityDispose
 {
-    private ReactiveEvent _isTeleportEvent;
     private ReactiveVariable<float> _damage;
-    private TriggerReciever _triggerReciever;
     private ReactiveVariable<bool> _isTeleportProcess;
+    private TriggerReciever _triggerReciever;
 
     private IDisposable _disposableTriggerEnter;
 

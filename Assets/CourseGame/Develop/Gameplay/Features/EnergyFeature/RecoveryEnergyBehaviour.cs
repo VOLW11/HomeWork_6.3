@@ -11,13 +11,13 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
 {
     public class RecoveryEnergyBehaviour : IEntityInitialize, IEntityUpdate
     {
-        private ICondition _condition;
-        private ReactiveVariable<float> _energy;
-        private IReadOnlyVariable<float> _maxEnergy;
+        private ReactiveVariable<float> _energy;     
         private float _time;
         private float _tempEnergy;
 
-        IReadOnlyVariable<float> _recoveryTime;
+        private ICondition _condition;
+        private IReadOnlyVariable<float> _maxEnergy;
+        private IReadOnlyVariable<float> _recoveryTime;
 
         public void OnInit(Entity entity)
         {
@@ -32,6 +32,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.EnergyFeature
             if (_condition.Evaluate())
             {
                 _time += deltaTime;
+
                 if (_time >= _recoveryTime.Value)
                 {
                     _time = 0;
