@@ -15,29 +15,17 @@ public class AreaDamageBehaviour : IEntityInitialize, IEntityDispose
     private ReactiveEvent _isTeleportEvent;
     private ReactiveVariable<float> _damage;
     private TriggerReciever _triggerReciever;
+    private ReactiveVariable<bool> _isTeleportProcess;
 
     private IDisposable _disposableTriggerEnter;
-    private IDisposable _disposableSphereCollider;
-
-  //  private IReadOnlyVariable<bool> _teleport;
-
-    private ReactiveVariable<bool> _isTeleportProcess;
 
     public void OnInit(Entity entity)
     {
-        _isTeleportEvent = entity.GetIsTeleportEvent();
         _triggerReciever = entity.GetSelfTriggerReciever();
         _damage = entity.GetSelfTriggerDamage();
+        _isTeleportProcess = entity.GetIsTeleportProcess();
 
         _disposableTriggerEnter = _triggerReciever.Enter.Subscribe(OnTriggerEnter);
-        _disposableSphereCollider = _isTeleportEvent.Subscribe(EnableCollider);
-
-        _isTeleportProcess = entity.GetIsTeleportProcess();
-    }
-
-    private void EnableCollider()
-    {
-        _isTeleportProcess.Value = false;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -51,12 +39,13 @@ public class AreaDamageBehaviour : IEntityInitialize, IEntityDispose
 
             _isTeleportProcess.Value = false;
         }
+
+        _isTeleportProcess.Value = false;
     }
 
     public void OnDispose()
     {
         _disposableTriggerEnter.Dispose();
-        _disposableSphereCollider.Dispose();
     }
 }
 

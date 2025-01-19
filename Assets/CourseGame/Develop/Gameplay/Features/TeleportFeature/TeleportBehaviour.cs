@@ -29,7 +29,7 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
 
             _isTeleportProcess = entity.GetIsTeleportProcess();
             _isTeleport = entity.GetIsTeleport();
-      
+
             _isTeleport.Changed += Teleport;
 
             _useEnergyEvent = entity.GetIsTeleportEvent();
@@ -43,12 +43,16 @@ namespace Assets.CourseGame.Develop.Gameplay.Features.TeleportFeature
                 return;
             }
 
-            _useEnergyEvent.Invoke();
+            _effectPosition.Invoke(_transform);
+            _transform.gameObject.SetActive(false);
+
+            _transform.position = new Vector3(Random.Range(-_teleportDistance, _teleportDistance), 0,
+                                              Random.Range(-_teleportDistance, _teleportDistance));
 
             _effectPosition.Invoke(_transform);
-            _transform.position = new Vector3(Random.Range(-_teleportDistance, _teleportDistance), 0, 
-                                              Random.Range(-_teleportDistance, _teleportDistance));
-            _effectPosition.Invoke(_transform);
+            _transform.gameObject.SetActive(true);
+
+            _useEnergyEvent.Invoke();
 
             _isTeleportProcess.Value = true;
             _isTeleport.Value = false;
